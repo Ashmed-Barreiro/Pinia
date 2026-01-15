@@ -1,7 +1,17 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-const items =[]
+
 
 export const useCartStore = defineStore('cartStore', () => {
-    return {items};
+    const items =ref([])
+
+    function add(cont, item) {
+
+        for (let index = 0; index < cont; index++) {
+        items.value.push(item)
+        }
+  
+}
+
+    return {items, add};
 })

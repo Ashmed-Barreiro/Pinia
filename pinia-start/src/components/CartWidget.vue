@@ -2,9 +2,13 @@
 // imports
 import { ref } from "vue";
 import CartItem from "./CartItem.vue";
+import { useCartStore } from "../store/useCartStore";
 
 // data
 const active = ref(false);
+const CartStore = useCartStore() 
+
+
 </script>
 <template>
   <div class="relative">
@@ -17,21 +21,15 @@ const active = ref(false);
     <AppModalOverlay :active="active" @close="active = false">
       <div>
         <ul class="items-in-cart">
-          <CartItem
+          <CartItem v-for="value in CartStore.items"
             :product="{ name: 'Dried Pineapple', price: 5 }"
-            :count="5"
-            @updateCount=""
-            @clear=""
-          />
-          <CartItem
-            :product="{ name: 'Pineapple Gum', price: 3 }"
             :count="5"
             @updateCount=""
             @clear=""
           />
         </ul>
         <div class="flex justify-end text-2xl mb-5">
-          Total: <strong>$40</strong>
+          Total: <strong>x</strong>
         </div>
         <div class="flex justify-end">
           <AppButton class="secondary mr-2">Clear Cart</AppButton>
