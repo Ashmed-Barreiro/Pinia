@@ -12,7 +12,15 @@ export const useCartStore = defineStore('cartStore', () => {
     //Getters
     const cantidad = computed(() => items.value.length)
     const isEmpty = computed(() => cantidad.value === 0)
-    const grouper = computed(() => groupBy(items.value, (item) => item.name))
+    const grouper = computed(() =>{ 
+       const gruper = groupBy(items.value, (item) => item.name)
+       const sorted = Object.keys(gruper).sort()
+       let inOrder = {}
+       sorted.forEach((key)=>(inOrder[key]= gruper[key]))
+       
+       return inOrder
+
+    })
     const total = computed(() => items.value.reduce((acumulador, elemento) => acumulador + elemento.price, 0))
 
     //Actions
@@ -32,6 +40,7 @@ export const useCartStore = defineStore('cartStore', () => {
     }
 
     const clearItem = (itemName) => (items.value = items.value.filter((item)=> item.name != itemName))
+
     const setItemCount = (item,count) => {
         
         clearItem(item.name)

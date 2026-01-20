@@ -34,7 +34,7 @@ const CartStore = useCartStore()
         </div>
         <div class="flex justify-end">
           <AppButton class="secondary mr-2" @click="CartStore.$reset()">Clear Cart</AppButton>
-          <AppButton class="primary">Checkout</AppButton>0.
+          <AppButton class="primary">Checkout</AppButton>
         </div>
       </div>
       <!-- Uncomment and use condition to show when cart is empty -->
